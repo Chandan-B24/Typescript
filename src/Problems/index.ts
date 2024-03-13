@@ -45,5 +45,15 @@ const removeDuplicates = (array:number[]):number[] => {
 
 console.log(removeDuplicates([1,1,2,4,5,6,7,7,6,5,9,8]))
 
-// Problem 4 : Write a TypeScript function to find the longest consecutive sequence of increasing numbers in an array of numbers.
+// Problem 4 : Write a TypeScript function to rotate an array to the right by a given number of steps.
 
+const rightShift = (array:number[],rightShift:number):number[] => {
+    let shiftedArray:number[] = [];
+        for(let i=0; i < array.length; i++){
+            const newIndex = (i + rightShift) % array.length;
+            shiftedArray[newIndex] = array[i]
+        }
+    return shiftedArray
+}
+
+console.log(rightShift([1,2,3,4,5,6],2))
