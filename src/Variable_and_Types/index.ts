@@ -14,3 +14,18 @@ let isWorking:boolean = true
 let hobbies:string[] = ["cricket","video games","music"]
 //using const the value cannot be changed and using let the value can bechanged or reassigned to new value
 
+//typescript can be used to hold a specific range of value in it
+//example suppose a variable holds a vlaue as a string or null
+let person:string | null;
+person = "Chandan B";
+console.log(person) //output : Chandan B
+person = null;
+console.log(person) //output : null
+
+//types
+//number all the numbers in typescript are floating-point values. it may be a decimal,integer
+let decimal: number = 6;
+let hex: number = 0xf00d;
+let binary: number = 0b1010;
+let octal: number = 0o744;
+
