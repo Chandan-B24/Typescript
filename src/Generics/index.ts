@@ -10,3 +10,24 @@ function identity<T>(arg : T){
 let myArgument = identity<string>("Chandan".toUpperCase())
 let myArgument2 = identity<number>(3)
 
+function getFirstElement<T>(arr : T[]){
+    return arr[0];
+}
+
+console.log(getFirstElement<number>([1,2,4]))
+console.log(getFirstElement<string>(['a','b']));
+
+interface data {name : string ,age : number}
+
+type APiResponse<Data> = {
+    data : Data,
+    isError : boolean
+}
+
+const resposne : APiResponse<data> = {
+    data : {
+        name : 'John',
+        age :28
+    },
+    isError :false
+}
