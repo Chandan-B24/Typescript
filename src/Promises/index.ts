@@ -25,3 +25,63 @@ myPromise.then((result)=>{
 }).catch((error)=>{
     console.log(error)
 })
+
+
+//all() method pf promise
+
+const firstPromise = new Promise<string>((resolve)=>setTimeout(resolve,1000,'one'))
+const secondPromise = new Promise<string>((resolve)=>setTimeout(resolve,500,'two'))
+
+Promise.all([firstPromise,secondPromise]).then((values)=>console.log(values))  // ['one','two']
+
+//race in promise
+
+const firstOnePromise = new Promise<string>((resolve)=>setTimeout(resolve,1000,'one'))
+const secondOnePromise = new Promise<string>((resolve)=>setTimeout(resolve,500,'two'))
+
+
+Promise.race([firstOnePromise,secondOnePromise]).then((value)=>console.log(value))
+
+
+//async and await
+//The async and await keywords in JavaScript are used to make asynchronous programming easy, by introducing something called coroutines.
+//The await keyword is a special command which tells JavaScript to stop the execution of the current function until a Promise resolves, and then return the promise's value. 
+
+async function fetchData():Promise<string>{
+    return "data fetched successfully"
+} 
+
+//let us go with real time api's usage
+interface UserApi{
+    id : number,
+    name : string,
+    email : string
+}
+
+const fetchDataApi = async (userId : number) : Promise<UserApi> =>{
+    const response =await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
+    if(!response.ok){
+        throw new Error("Unable to fetch")
+    }
+
+    const userData : UserApi = await response.json()
+    return userData
+}
+
+
+const displayData = async (userId : number) :Promise<void> =>{
+    try {
+        const user = await fetchDataApi(userId)
+        console.log("User Data", user)
+    } catch (error) {
+        console.log(error)
+    }
+}   
+
+displayData(1)
+
+
+
+
+
+
